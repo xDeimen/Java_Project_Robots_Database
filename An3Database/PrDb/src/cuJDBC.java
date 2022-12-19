@@ -18,7 +18,7 @@ public class cuJDBC {
     
     //aceasta cale trebuie "adaptata" la locul in care este baza de date MS Access
     //this path must be "adapted" to the location of your MS Access database
-    private static final String filename = "D:\\Work\\An3\\An3Database\\PrDb\\test.mdb";
+    private static final String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\test.mdb";
 
     private static Connection getUcanaccessConnection(String filename) throws SQLException {
         filename = filename.trim();
