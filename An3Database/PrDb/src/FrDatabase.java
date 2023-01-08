@@ -345,8 +345,7 @@ public class FrDatabase extends javax.swing.JFrame {
            
             System.out.println(model.getDataVector().get(selected[0]));
             String ID = jTable1.getModel().getValueAt(selected[0], 0).toString();
-            
-            
+
             fu = new FrUpdate();
             fu.setVisible(true);
             fu.setThis(this);
@@ -361,19 +360,32 @@ public class FrDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
         int[] selected = jTable1.getSelectedRows();
-        for (int i = 0; i < selected.length; i++){
+        
+        /*
+         * We select multiple rows that we want to copy, and after we copy it, 
+         * we decrement de i variable to get to the next row we selected
+        */
+        
+        for (int i = selected.length - 1; i >= 0; --i) {  
+                
+            String copy = "INSERT INTO Table1" +
+                "([program],[instructiune],[parametri],[data],[real]) VALUES("+
+                "'"+ jTable1.getModel().getValueAt(selected[i], 1).toString()+"',"+
+                "'"+ jTable1.getModel().getValueAt(selected[i], 2).toString()+"',"+
+                "'"+ jTable1.getModel().getValueAt(selected[i], 3).toString()+"',"+
+                "'"+ jTable1.getModel().getValueAt(selected[i], 4).toString()+"',"+         
+                "'"+jTable1.getModel().getValueAt(selected[i], 5).toString()+"')";   
             
-            Vector data = model.getDataVector();
-            Vector row = (Vector) data.elementAt(selected[i]);
-            row = (Vector) row.clone();
+            /*
+             * Displaying the generated string in the log
+             * System.out.println(ins);
+             */
+            
+            runSQL(copy);        
             
         }
-        
-        String sql;
-                    
-        
+   
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

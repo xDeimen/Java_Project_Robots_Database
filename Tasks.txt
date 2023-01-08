@@ -1,4 +1,4 @@
--Copy Button
+-Copy Button (DONE)
 -Add robot types
 -Query option in they GUI maybe?
 -Solve Bugs
