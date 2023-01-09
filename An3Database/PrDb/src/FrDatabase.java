@@ -86,6 +86,14 @@ public class FrDatabase extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Program");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Instructiune");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Parametri");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Data");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Real");
+        }
 
         jButton1.setText("Insert");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +161,12 @@ public class FrDatabase extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Search by Data");
+        jButton5.setText("Search by Date");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +192,7 @@ public class FrDatabase extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(30, 30, 30)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -364,7 +377,6 @@ public class FrDatabase extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int[] selected = jTable1.getSelectedRows();
         
@@ -393,6 +405,14 @@ public class FrDatabase extends javax.swing.JFrame {
         }
    
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        sch = new FrSearch();
+        sch.setVisible(true);
+        sch.setThis(this);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,4 +501,5 @@ public class FrDatabase extends javax.swing.JFrame {
     String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\test.mdb";
     FrInsert fi;
     FrUpdate fu;
+    FrSearch sch;
 }

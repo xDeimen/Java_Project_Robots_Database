@@ -9,8 +9,10 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import java.util.Date;
 import java.util.Objects;
 
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import net.ucanaccess.jdbc.UcanaccessDriver;
@@ -22,6 +24,7 @@ public class FrSearch extends javax.swing.JFrame {
         initComponents();
     }
     
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -31,12 +34,23 @@ public class FrSearch extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        popup2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        popup1 = new javax.swing.JButton();
+        popup3 = new javax.swing.JButton();
+
+        popup2.setText("popup");
+        popup2.setActionCommand("popup1");
+        popup2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popup2(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -45,7 +59,7 @@ public class FrSearch extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Program");
+        jLabel1.setText("Start Date");
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,69 +69,150 @@ public class FrSearch extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Program");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("End Date");
+
+        popup1.setText("popup");
+        popup1.setActionCommand("popup1");
+        popup1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popup1(evt);
+            }
+        });
+
+        popup3.setText("popup");
+        popup3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popup3(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(36, 36, 36)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(41, 41, 41))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(popup1)
+                    .addComponent(popup3))
+                .addGap(142, 142, 142))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(popup1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(popup3))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        popup1.getAccessibleContext().setAccessibleName("popup1");
 
         pack();
     }//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      
         //System.out.println(ins);
         //System.out.println(parent);
         
+        /*String ins = "INSERT INTO Table1" +
+            "([program],[instructiune],[parametri],[data],[real]) VALUES("+
+            "'"+jTextField1.getText()+"',"+
+            "'"+jTextField2.getText()+"',"+
+            "'"+jTextField3.getText()+"',"+
+            "#"+jTextField4.getText()+"#,0.0)";   
+        //System.out.println(ins);
+        //System.out.println(parent);
+        parent.runSQL(ins);
+        this.dispose();
+        
+        
+        */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //parent.runSQL(search);
+        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here: DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();   
-    
+
+
+        
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void popup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popup1
+        // TODO add your handling code here:
+        jTextField1.setText(new DatePicker(this).setPickedDate());
+    }//GEN-LAST:event_popup1
+
+    private void popup2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popup2
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_popup2
+
+    private void popup3(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popup3
+        // TODO add your handling code here:
+        jTextField5.setText(new DatePicker(this).setPickedDate());
+    }//GEN-LAST:event_popup3
 
     /**
      * @param args the command line arguments
@@ -143,7 +238,7 @@ public class FrSearch extends javax.swing.JFrame {
             java.util
                 .logging
                 .Logger
-                .getLogger(FrInsert.class.getName())
+                .getLogger(FrSearch.class.getName())
                 .log(java.util
                          .logging
                          .Level
@@ -152,7 +247,7 @@ public class FrSearch extends javax.swing.JFrame {
             java.util
                 .logging
                 .Logger
-                .getLogger(FrInsert.class.getName())
+                .getLogger(FrSearch.class.getName())
                 .log(java.util
                          .logging
                          .Level
@@ -161,7 +256,7 @@ public class FrSearch extends javax.swing.JFrame {
             java.util
                 .logging
                 .Logger
-                .getLogger(FrInsert.class.getName())
+                .getLogger(FrSearch.class.getName())
                 .log(java.util
                          .logging
                          .Level
@@ -170,7 +265,7 @@ public class FrSearch extends javax.swing.JFrame {
             java.util
                 .logging
                 .Logger
-                .getLogger(FrInsert.class.getName())
+                .getLogger(FrSearch.class.getName())
                 .log(java.util
                          .logging
                          .Level
@@ -183,7 +278,7 @@ public class FrSearch extends javax.swing.JFrame {
             .EventQueue
             .invokeLater(new Runnable() {
                 public void run() {
-                    new FrInsert().setVisible(true);
+                    new FrSearch().setVisible(true);
                 }
             });
     }
@@ -195,6 +290,9 @@ public class FrSearch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton popup1;
+    private javax.swing.JButton popup2;
+    private javax.swing.JButton popup3;
     // End of variables declaration//GEN-END:variables
     FrDatabase parent;
     public void setThis(Object ob) {
