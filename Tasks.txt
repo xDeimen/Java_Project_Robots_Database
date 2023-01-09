@@ -3,3 +3,4 @@
 -Query option in they GUI maybe?
 -Solve Bugs
 -Union?
+-Between time stamps search
