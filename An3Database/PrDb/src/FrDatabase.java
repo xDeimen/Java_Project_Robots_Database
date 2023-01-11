@@ -74,11 +74,11 @@ public class FrDatabase extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Program", "Instructiune", "Parametri", "Data", "Real"
+                "ID", "Robot", "Program", "Instructiune", "Parametri", "Data", "Real"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -88,11 +88,12 @@ public class FrDatabase extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Program");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Instructiune");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Parametri");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Data");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Real");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Robot");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Program");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Instructiune");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Parametri");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Data");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("Real");
         }
 
         jButton1.setText("Insert");
@@ -200,8 +201,8 @@ public class FrDatabase extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,18 +210,15 @@ public class FrDatabase extends javax.swing.JFrame {
                         .addComponent(jRadioButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(jButton4)
-                            .addComponent(jButton5))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))))
+                            .addComponent(jButton5)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -260,6 +258,7 @@ public class FrDatabase extends javax.swing.JFrame {
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 model.addElement(rs.getString(1));
+                
                 //jList1.updateUI();
             }
             con.close();
@@ -286,8 +285,9 @@ public class FrDatabase extends javax.swing.JFrame {
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
-                model.addRow(new Object[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                                            rs.getDate(5)+" "+rs.getTime(5), rs.getString(6) });
+                model.addRow(new Object[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                                            rs.getDate(6)+" "+rs.getTime(6), rs.getString(7)});
+
             }
             con.close();
         } catch (Exception e) {
@@ -368,7 +368,7 @@ public class FrDatabase extends javax.swing.JFrame {
             fu = new FrUpdate();
             fu.setVisible(true);
             fu.setThis(this);
-            fu.setFields(jTable1.getModel().getValueAt(selected[0], 1).toString(), jTable1.getModel().getValueAt(selected[0], 2).toString(), jTable1.getModel().getValueAt(selected[0], 3).toString(), jTable1.getModel().getValueAt(selected[0], 4).toString(),ID);
+            fu.setFields(jTable1.getModel().getValueAt(selected[0], 1).toString(), jTable1.getModel().getValueAt(selected[0], 2).toString(), jTable1.getModel().getValueAt(selected[0], 3).toString(), jTable1.getModel().getValueAt(selected[0], 4).toString(),jTable1.getModel().getValueAt(selected[0], 5).toString(),ID);
             
             
         }
@@ -388,12 +388,13 @@ public class FrDatabase extends javax.swing.JFrame {
         for (int i = selected.length - 1; i >= 0; --i) {  
                 
             String copy = "INSERT INTO Table1" +
-                "([program],[instructiune],[parametri],[data],[real]) VALUES("+
+                "([robot],[program],[instructiune],[parametri],[data],[real]) VALUES("+
                 "'"+ jTable1.getModel().getValueAt(selected[i], 1).toString()+"',"+
                 "'"+ jTable1.getModel().getValueAt(selected[i], 2).toString()+"',"+
                 "'"+ jTable1.getModel().getValueAt(selected[i], 3).toString()+"',"+
-                "'"+ jTable1.getModel().getValueAt(selected[i], 4).toString()+"',"+         
-                "'"+jTable1.getModel().getValueAt(selected[i], 5).toString()+"')";   
+                "'"+ jTable1.getModel().getValueAt(selected[i], 4).toString()+"',"+
+                "'"+ jTable1.getModel().getValueAt(selected[i], 5).toString()+"',"+         
+                "'"+jTable1.getModel().getValueAt(selected[i], 6).toString()+"')";   
             
             /*
              * Displaying the generated string in the log
@@ -498,7 +499,7 @@ public class FrDatabase extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\test.mdb";
+    String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\FINAL_DATABASE.mdb";
     FrInsert fi;
     FrUpdate fu;
     FrSearch sch;

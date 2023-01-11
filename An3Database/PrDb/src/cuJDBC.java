@@ -18,7 +18,7 @@ public class cuJDBC {
     
     //aceasta cale trebuie "adaptata" la locul in care este baza de date MS Access
     //this path must be "adapted" to the location of your MS Access database
-    private static final String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\test.mdb";
+    private static final String filename = "S:\\III\\OOP\\Java Project Robots Database\\Java_Project_Robots_Database\\An3Database\\PrDb\\FINAL_DATABASE.mdb";
 
     private static Connection getUcanaccessConnection(String filename) throws SQLException {
         filename = filename.trim();
@@ -72,9 +72,9 @@ public class cuJDBC {
 
             java.sql.Date dataazi = new java.sql.Date(new java.util.Date().getTime());
             String ins =
-                 "INSERT INTO Table1([program],[instructiune],[parametri],[data],[real]) VALUES('program3','arc','x1=1;x2=2',#" +
+                 "INSERT INTO Table1([robot],[program],[instructiune],[parametri],[data],[real]) VALUES('program3','arc','x1=1;x2=2',#" +
                 dataazi + "#, 234)";
-            ins ="INSERT INTO Table1([program],[instructiune],[parametri],[data],[real]) VALUES('qqq','aaa','aaa',#2022/12/05#,0.0)";
+            ins ="INSERT INTO Table1([robot],[program],[instructiune],[parametri],[data],[real]) VALUES('qqq','aaa','aaa',#2022/12/05#,0.0)";
 
             System.out.println(ins);
             statement.executeUpdate(ins);
