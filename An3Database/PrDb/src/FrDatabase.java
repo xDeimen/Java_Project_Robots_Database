@@ -369,7 +369,12 @@ public class FrDatabase extends javax.swing.JFrame {
             fu.setVisible(true);
             fu.setThis(this);
             fu.setFields(jTable1.getModel().getValueAt(selected[0], 1).toString(), jTable1.getModel().getValueAt(selected[0], 2).toString(), jTable1.getModel().getValueAt(selected[0], 3).toString(), jTable1.getModel().getValueAt(selected[0], 4).toString(),jTable1.getModel().getValueAt(selected[0], 5).toString(),ID);
-            
+            System.out.println(jTable1.getModel().getValueAt(selected[0], 1).toString());
+            System.out.println(jTable1.getModel().getValueAt(selected[0], 2).toString());
+            System.out.println(jTable1.getModel().getValueAt(selected[0], 3).toString());
+            System.out.println(jTable1.getModel().getValueAt(selected[0], 4).toString());
+            System.out.println(jTable1.getModel().getValueAt(selected[0], 5).toString());
+            System.out.println(ID);
             
         }
         

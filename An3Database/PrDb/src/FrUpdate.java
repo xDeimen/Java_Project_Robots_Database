@@ -27,11 +27,14 @@ public class FrUpdate extends javax.swing.JFrame {
     }
     
     public void setFields (String f1, String f2, String f3, String f4, String f5, String id) {
-        jTextField1.setText(f1);
-        jTextField2.setText(f2);
-        jTextField3.setText(f3);
-        jTextField4.setText(f4);
+        //Robot
+        jTextField5.setText(f1);
+        //
+        jTextField1.setText(f2);
+        jTextField2.setText(f3);
+        jTextField3.setText(f4);
         jTextField4.setText(f5);
+    
         this.id = id;
     }
     
