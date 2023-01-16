@@ -438,7 +438,6 @@ public class FrDatabase extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int[] selected = jTable1.getSelectedRows();
         
         /*
@@ -457,10 +456,6 @@ public class FrDatabase extends javax.swing.JFrame {
                 "'"+ jTable1.getModel().getValueAt(selected[i], 5).toString()+"',"+         
                 "'"+jTable1.getModel().getValueAt(selected[i], 6).toString()+"')";   
             
-            /*
-             * Displaying the generated string in the log
-             * System.out.println(ins);
-             */
             
             runSQL(copy);        
             
@@ -480,7 +475,7 @@ public class FrDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
         order = "robot";
         if(order.equals("robot")){
-            fillListBox("SELECT DISTINCT robot FROM Table1;");
+            fillListBox("SELECT DISTINCT " + order + " FROM Table1;");
         }
         System.out.println(order);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
@@ -493,7 +488,7 @@ public class FrDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
         order = "program";
         if(order.equals("program")){
-            fillListBox("SELECT DISTINCT program FROM Table1;");
+            fillListBox("SELECT DISTINCT " + order + " FROM Table1;");
         }
         System.out.println(order);
     }//GEN-LAST:event_jRadioButton5ActionPerformed
@@ -502,7 +497,7 @@ public class FrDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
         order = "instructiune";
         if(order.equals("instructiune")){
-            fillListBox("SELECT DISTINCT instructiune FROM Table1;");
+            fillListBox("SELECT DISTINCT " + order + " FROM Table1;");
         }
         System.out.println(order);
     }//GEN-LAST:event_jRadioButton6ActionPerformed

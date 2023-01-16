@@ -1,6 +1,4 @@
 -Copy Button (DONE)
--Add robot types
--Query option in they GUI maybe?
--Solve Bugs
--Union?
--Between time stamps search
+-Add robot types (DONE)
+-Extend query option in they GUI maybe? (Done but buggy)
+-Between time stamps search(DONE)
